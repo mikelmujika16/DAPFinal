@@ -13,6 +13,7 @@ public class FlightModel {
     private XYSeries verticalSpeedSeries = new XYSeries("Velocidad Vertical (m/s)");
     private List<StateVector> recentFlights = new ArrayList<>();
 
+
     private double maxAltitude = 0;
     private double totalAltitude = 0;
     private double totalVelocity = 0;

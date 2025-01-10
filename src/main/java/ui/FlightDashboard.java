@@ -1,6 +1,14 @@
 package ui;
 
 import model.FlightModel;
+import org.jxmapviewer.JXMapViewer;
+import org.jxmapviewer.OSMTileFactoryInfo;
+import org.jxmapviewer.viewer.DefaultTileFactory;
+import org.jxmapviewer.viewer.GeoPosition;
+import org.jxmapviewer.viewer.TileFactoryInfo;
+import org.jxmapviewer.viewer.Waypoint;
+import org.jxmapviewer.viewer.WaypointPainter;
+import org.jxmapviewer.viewer.*;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -10,6 +18,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 
 public class FlightDashboard extends JFrame {
@@ -22,6 +31,8 @@ public class FlightDashboard extends JFrame {
     private JLabel lastUpdateLabel;
 
     private JPanel chartsPanel;
+    private JXMapViewer mapViewer;
+    private WaypointPainter<Waypoint> waypointPainter;
 
     public FlightDashboard(String title) {
         super(title);
@@ -32,6 +43,7 @@ public class FlightDashboard extends JFrame {
         chartsPanel = new JPanel(new GridLayout(2, 2));
         tabbedPane.addTab("Gráficas", chartsPanel);
         tabbedPane.addTab("Información", createInfoPanel());
+        tabbedPane.addTab("Mapa", createMapPanel());
 
         add(tabbedPane, BorderLayout.CENTER);
         setSize(1200, 800);
@@ -60,6 +72,24 @@ public class FlightDashboard extends JFrame {
         return panel;
     }
 
+    private JPanel createMapPanel() {
+        mapViewer = new JXMapViewer();
+        TileFactoryInfo info = new OSMTileFactoryInfo();
+        DefaultTileFactory tileFactory = new DefaultTileFactory(info);
+        mapViewer.setTileFactory(tileFactory);
+
+        // Set the focus
+        mapViewer.setZoom(10);
+        mapViewer.setAddressLocation(new GeoPosition(0, 0));
+
+        waypointPainter = new WaypointPainter<>();
+        mapViewer.setOverlayPainter(waypointPainter);
+
+        JPanel mapPanel = new JPanel(new BorderLayout());
+        mapPanel.add(mapViewer, BorderLayout.CENTER);
+        return mapPanel;
+    }
+
     public void updateView(double epochTime, double altitude, double velocity, double verticalSpeed, double latitude, double longitude, FlightModel model) {
         String formattedTime = new SimpleDateFormat("HH:mm:ss").format(new Date((long) (epochTime * 1000)));
 
@@ -80,6 +110,13 @@ public class FlightDashboard extends JFrame {
         chartsPanel.add(createSpeedDistributionChart(model)); // Gráfico de pastel
         chartsPanel.revalidate();
         chartsPanel.repaint();
+
+        // Actualizar mapa
+        GeoPosition geoPosition = new GeoPosition(latitude, longitude);
+        mapViewer.setAddressLocation(geoPosition);
+        Waypoint waypoint = new DefaultWaypoint(geoPosition);
+        waypointPainter.setWaypoints(Collections.singleton(waypoint));
+        mapViewer.repaint();
     }
 
     private JPanel createChartPanel(String title, XYSeries series, String xLabel, String yLabel) {
@@ -95,5 +132,9 @@ public class FlightDashboard extends JFrame {
                 true, true, false
         );
         return new ChartPanel(chart);
+    }
+
+    public void updateTitle(String icao24) {
+        setTitle(getTitle() + " - " + icao24);
     }
 }

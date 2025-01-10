@@ -15,11 +15,13 @@ public class FlightController {
     private FlightModel model;
     private FlightDashboard view;
     private OpenSkyApi api;
+    private boolean done;
 
     public FlightController(FlightModel model, FlightDashboard view) {
+        done = false;
         this.model = model;
         this.view = view;
-        this.api = new OpenSkyApi("username", "password"); // Reemplaza con tus credenciales
+        this.api = new OpenSkyApi("Mugica", "zUCH39eY"); // Reemplaza con tus credenciales
     }
 
     public void fetchRecentFlights() {
@@ -82,6 +84,11 @@ public class FlightController {
 
                     if (stateVectors != null && !stateVectors.isEmpty()) {
                         StateVector state = stateVectors.get(0);
+                        if (!done) {
+                            String originCountry = state.getOriginCountry() != null ? state.getOriginCountry() : "N/A";
+                            view.updateTitle(icao24 + " (" + originCountry + ")");
+                            done = true;
+                        }
                         double epochTime = state.getLastContact();
                         double altitude = state.getGeoAltitude() != null ? state.getGeoAltitude() : 0.0;
                         double velocity = state.getVelocity() != null ? state.getVelocity() : 0.0;
