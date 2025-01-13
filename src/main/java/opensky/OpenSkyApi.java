@@ -250,7 +250,8 @@ public class OpenSkyApi {
 			}
 		}
 		nvps.add(new AbstractMap.SimpleImmutableEntry<>("time", Integer.toString(time)));
-		return checkRateLimit(REQUEST_TYPE.GET_STATES, 4900, 9900) ? getOpenSkyStates(STATES_URI, nvps) : null;
+		return checkRateLimit(REQUEST_TYPE.GET_STATES, 4900,
+				9900) ? getOpenSkyStates(STATES_URI, nvps) : null;
 	}
 
 	/**
