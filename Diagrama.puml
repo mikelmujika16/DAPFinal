@@ -1,0 +1,199 @@
+@startuml
+class opensky.OpenSkyStatesDeserializer {
+- Collection<StateVector> deserializeStates(JsonParser)
++ OpenSkyStates deserialize(JsonParser,DeserializationContext)
+}
+
+class opensky.StateVector {
+- {static} long serialVersionUID
+- Double geoAltitude
+- Double longitude
+- Double latitude
+- Double velocity
+- Double heading
+- Double verticalRate
+- String icao24
+- String callsign
+- boolean onGround
+- Double lastContact
+- Double lastPositionUpdate
+- String originCountry
+- String squawk
+- boolean spi
+- Double baroAltitude
+- PositionSource positionSource
+- Set<Integer> serials
++ Double getGeoAltitude()
++ void setGeoAltitude(Double)
++ Double getLongitude()
++ void setLongitude(Double)
++ Double getLatitude()
++ void setLatitude(Double)
++ Double getVelocity()
++ void setVelocity(Double)
++ Double getHeading()
++ void setHeading(Double)
++ Double getVerticalRate()
++ void setVerticalRate(Double)
++ String getIcao24()
++ void setIcao24(String)
++ String getCallsign()
++ void setCallsign(String)
++ boolean isOnGround()
++ void setOnGround(boolean)
++ Double getLastContact()
++ void setLastContact(Double)
++ Double getLastPositionUpdate()
++ void setLastPositionUpdate(Double)
++ void addSerial(int)
++ Set<Integer> getSerials()
++ String getOriginCountry()
++ void setOriginCountry(String)
++ String getSquawk()
++ void setSquawk(String)
++ boolean isSpi()
++ void setSpi(boolean)
++ Double getBaroAltitude()
++ void setBaroAltitude(Double)
++ PositionSource getPositionSource()
++ void setPositionSource(PositionSource)
++ String toString()
++ boolean equals(Object)
++ int hashCode()
+}
+
+
+enum opensky.PositionSource {
++  ADS_B
++  ASTERIX
++  MLAT
++  FLARM
++  UNKNOWN
+}
+
+class main.Main {
++ {static} void main(String[])
+}
+
+class opensky.OpenSkyStates {
+- int time
+- Collection<StateVector> flightStates
++ int getTime()
++ void setTime(int)
++ Collection<StateVector> getStates()
++ void setStates(Collection<StateVector>)
+}
+
+
+class controller.FlightController {
+- FlightModel model
+- FlightDashboard view
+- OpenSkyApi api
+- boolean done
++ void fetchRecentFlights()
+- String showFlightSelectionDialog(List<String>,List<StateVector>)
++ void startFlightMonitoring(String)
+}
+
+
+class ui.FlightDashboard {
+- JLabel currentAltitudeLabel
+- JLabel currentVelocityLabel
+- JLabel maxAltitudeLabel
+- JLabel avgAltitudeLabel
+- JLabel avgVelocityLabel
+- JLabel updateCountLabel
+- JLabel lastUpdateLabel
+- JPanel chartsPanel
+- JXMapViewer mapViewer
+- WaypointPainter<Waypoint> waypointPainter
+- JPanel createInfoPanel()
+- JPanel createMapPanel()
++ void updateView(double,double,double,double,double,double,FlightModel)
+- JPanel createChartPanel(String,XYSeries,String,String)
+- JPanel createSpeedDistributionChart(FlightModel)
++ void updateTitle(String)
+}
+
+
+class opensky.OpenSkyApi {
+- {static} String HOST
+- {static} String API_ROOT
+- {static} String STATES_URI
+- {static} String MY_STATES_URI
+- boolean authenticated
+- ObjectMapper mapper
+- OkHttpClient okHttpClient
+- Map<REQUEST_TYPE,Long> lastRequestTime
+- OpenSkyStates getResponse(String,Collection<AbstractMap.Entry<String,String>>)
+- boolean checkRateLimit(REQUEST_TYPE,long,long)
+- OpenSkyStates getOpenSkyStates(String,ArrayList<AbstractMap.Entry<String,String>>)
++ OpenSkyStates getStates(int,String[])
++ OpenSkyStates getStates(int,String[],BoundingBox)
++ OpenSkyStates getMyStates(int,String[],Integer[])
+}
+
+
+enum opensky.REQUEST_TYPE {
++  GET_STATES
++  GET_MY_STATES
+}
+
+class opensky.OpenSkyApi$BasicAuthInterceptor {
+- String credentials
++ Response intercept(Chain)
+}
+
+
+class opensky.OpenSkyApi$BoundingBox {
+- double minLatitude
+- double minLongitude
+- double maxLatitude
+- double maxLongitude
++ double getMinLatitude()
++ double getMinLongitude()
++ double getMaxLatitude()
++ double getMaxLongitude()
++ boolean equals(Object)
++ int hashCode()
+- void checkLatitude(double)
+- void checkLongitude(double)
+}
+
+
+class model.FlightModel {
+- XYSeries altitudeSeries
+- XYSeries velocitySeries
+- XYSeries verticalSpeedSeries
+- List<StateVector> recentFlights
+- double maxAltitude
+- double totalAltitude
+- double totalVelocity
+- int updateCount
++ void addData(double,double,double)
++ XYSeries getAltitudeSeries()
++ XYSeries getVelocitySeries()
++ XYSeries getVerticalSpeedSeries()
++ DefaultPieDataset getSpeedDistributionDataset()
++ double getMaxAltitude()
++ double getAverageAltitude()
++ double getAverageVelocity()
++ void setRecentFlights(List<StateVector>)
++ List<StateVector> getRecentFlights()
+}
+
+
+class main.MainScreen {
++ {static} void main(String[])
+}
+
+
+
+com.fasterxml.jackson.databind.deser.std.StdDeserializer <|-- opensky.OpenSkyStatesDeserializer
+java.io.Serializable <|.. opensky.StateVector
+ui.JFrame <|-- ui.FlightDashboard
+opensky.OpenSkyApi +.. opensky.OpenSkyApi$BasicAuthInterceptor
+opensky.Interceptor <|.. opensky.OpenSkyApi$BasicAuthInterceptor
+opensky.OpenSkyApi +.. opensky.OpenSkyApi$BoundingBox
+main.JFrame <|-- main.MainScreen
+@enduml
