@@ -105,11 +105,11 @@ public class FlightController {
                         System.out.println("No se encontraron datos para el ICAO24: " + icao24);
                     }
 
-                    Thread.sleep(5000);
+                    Thread.sleep(10000);
                 } catch (Exception e) {
                     System.err.println("Error al obtener datos: " + e.getMessage());
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(10000);
                     } catch (InterruptedException ex) {
                         Thread.currentThread().interrupt();
                         break;

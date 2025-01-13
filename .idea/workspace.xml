@@ -5,22 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21e404dc-af00-41ba-b503-a237ee538885" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/MainScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/FlightController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/FlightController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/FlightModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/FlightModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/FlightDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/FlightDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/FlightDashboard.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/OpenSkyAPIExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/opensky/api/OpenSkyApi$BasicAuthInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/opensky/api/OpenSkyApi$BoundingBox.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/opensky/api/OpenSkyApi$REQUEST_TYPE.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/opensky/api/OpenSkyApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/opensky/model/OpenSkyStates.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/opensky/model/OpenSkyStatesDeserializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/opensky/model/StateVector$PositionSource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/opensky/model/StateVector.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/FlightController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/FlightController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,18 +24,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "mikelmujika16"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mikelmujika16&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:mikelmujika16/DAPFinal.git",
-    "accountId": "a3b74536-1cb5-4f0f-99d9-50c84adecb95"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:mikelmujika16/DAPFinal.git&quot;,
+    &quot;accountId&quot;: &quot;a3b74536-1cb5-4f0f-99d9-50c84adecb95&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -57,17 +44,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.MainScreen.executor": "Run",
-    "Application.OpenSkyAPIExample.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Usuario/Documents/GitHub/DAPFinal/src/main/java/org/example"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainScreen.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OpenSkyAPIExample.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Usuario/Documents/GitHub/DAPFinal/src/main/java/org/example&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Usuario\Documents\GitHub\DAPFinal\src\main\java\org\example" />
@@ -85,7 +72,33 @@
       <recent name="org.opensky.model" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.MainScreen">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="opensky-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.MainScreen" />
+      <module name="opensky-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="OpenSkyAPIExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.OpenSkyAPIExample" />
       <module name="opensky-api" />
@@ -101,6 +114,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainScreen" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.OpenSkyAPIExample" />
       </list>
     </recent_temporary>
